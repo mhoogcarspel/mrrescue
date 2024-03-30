@@ -130,12 +130,21 @@ function love.joystickpressed(joy, k)
 				gamestates[state].action(a)
 			end
 		end
-
-
+	end
+	-- dpad inputs
+	if joy:isGamepadDown('dpleft') then
+		gamestates[state].action('left')
+	elseif joy:isGamepadDown('dpright') then
+		gamestates[state].action('right')
+	end
+	if joy:isGamepadDown('dpup') then
+		gamestates[state].action('up')
+	elseif joy:isGamepadDown('dpdown') then
+		gamestates[state].action('down')
 	end
 end
 
--- dpad for menus
+-- xbox dpad for menus
 function love.joystickhat(joy, hat, dir)
 
 	if dir == 'l' then

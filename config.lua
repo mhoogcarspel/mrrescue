@@ -1,6 +1,6 @@
 default_config = {
 	scale = 3,
-	fullscreen = 2,
+	fullscreen = 3,
 	vsync = true,
 	sfx_volume = 1.0,
 	music_volume = 0.5,
@@ -8,7 +8,7 @@ default_config = {
 			up = "up", down = "down", left = "left", right = "right", jump = "s", shoot = "d", action = "a"
 	},
 	joykeys = {
-		jump = 1, shoot = 3, action = 2, pause = 8
+		jump = 1, shoot = 4, action = 2, pause = 10
 	}
 }
 
