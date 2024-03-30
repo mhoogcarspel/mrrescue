@@ -130,7 +130,27 @@ function love.joystickpressed(joy, k)
 				gamestates[state].action(a)
 			end
 		end
+
+
 	end
+end
+
+-- dpad for menus
+function love.joystickhat(joy, hat, dir)
+
+	if dir == 'l' then
+		gamestates[state].action('left')
+	elseif dir == 'r' then
+		gamestates[state].action('right')
+	end
+	if dir == 'u' then
+		gamestates[state].action('up')
+	elseif dir == 'd' then
+		gamestates[state].action('down')
+	end
+
+	
+
 end
 
 --- Updates keystates of ingame keys.
@@ -146,11 +166,25 @@ function updateKeys()
 		end
 	end
 
-	-- Check joystick axes
+	-- Check joystick axis
 	local joystick = love.joystick.getJoysticks()[1]
 	if joystick == nil then return end
 
+	-- dpad inputs ingame
+	if joystick:isGamepadDown('dpleft') then
+		keystate.left = true
+	elseif joystick:isGamepadDown('dpright') then
+		keystate.right = true
+	end
+	if joystick:isGamepadDown('dpup') then
+		keystate.up = true
+	elseif joystick:isGamepadDown('dpdown') then
+		keystate.down = true
+	end
+
+	-- analog stick
 	local axis1, axis2 = joystick:getAxes()
+	
 	if axis1 and axis2 then
 		if axis1 < -0.5 then
 			keystate.left = true
