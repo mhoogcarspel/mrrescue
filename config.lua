@@ -1,6 +1,6 @@
 default_config = {
 	scale = 3,
-	fullscreen = 0,
+	fullscreen = 2,
 	vsync = true,
 	sfx_volume = 1.0,
 	music_volume = 0.5,
