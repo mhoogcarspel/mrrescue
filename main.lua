@@ -94,20 +94,29 @@ function love.draw()
 end
 
 function setZoom()
-	if config.fullscreen == 1 then
+	if config.fullscreen == 1 then -- FILL, fullscreen without keeping aspect ratio
 		local sw = love.graphics.getWidth()/WIDTH/config.scale
 		local sh = love.graphics.getHeight()/HEIGHT/config.scale
 		lg.scale(sw,sh)
-	elseif config.fullscreen == 2 then
+	elseif config.fullscreen == 2 then -- ZOOM, manual zoom, based on SCALE
 		local sw = love.graphics.getWidth()/WIDTH/config.scale
 		local sh = love.graphics.getHeight()/HEIGHT/config.scale
 		local tx = (love.graphics.getWidth() - WIDTH*config.scale*sh)/2
 		lg.translate(tx, 0)
 		lg.scale(sh, sh)
 		lg.setScissor(tx, 0, WIDTH*config.scale*sh, love.graphics.getHeight())
-	elseif config.fullscreen == 3 then
+	elseif config.fullscreen == 3 then -- SCALE 
 		lg.translate(fs_translatex,fs_translatey)
 		lg.setScissor(fs_translatex, fs_translatey, WIDTH*config.scale, HEIGHT*config.scale)
+	elseif config.fullscreen == 4 then -- ASPCT, fullscreen while keeping aspect ratio
+		local sw = love.graphics.getWidth()/WIDTH/config.scale
+		local sh = love.graphics.getHeight()/HEIGHT/config.scale
+		local scale_min = math.min(sw,sh)
+		local tx = math.floor((love.graphics.getWidth() - WIDTH*config.scale*scale_min)/2)
+		local ty = math.floor((love.graphics.getHeight() - HEIGHT*config.scale*scale_min)/2)
+		lg.translate(tx, ty)
+		lg.scale(scale_min, scale_min)
+		lg.setScissor(tx, ty, WIDTH*config.scale*scale_min, HEIGHT*config.scale*scale_min)
 	end
 end
 
@@ -122,6 +131,11 @@ function love.textinput(text)
 end
 
 function love.joystickpressed(joy, k)
+	-- quick quit
+	if joy:isGamepadDown('back') and joy:isGamepadDown('start') then
+		love.event.quit()
+	end
+
 	if gamestates[state].joystickpressed then
 		gamestates[state].joystickpressed(joy, k)
 	else

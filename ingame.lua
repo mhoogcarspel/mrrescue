@@ -448,7 +448,7 @@ function updateLightmap()
 	or ingame_state == INGAME_GAMEOVER_OUT or ingame_state == INGAME_WON
 	or ingame_state == INGAME_COUNTDOWN_IN or ingame_state == INGAME_COUNTDOWN then
 		lg.push()
-		lg.translate(-math.floor(translate_x), -math.floor(translate_y))
+		lg.translate(-math.ceil(translate_x), -math.ceil(translate_y))
 		-- canvas:clear(0,0,0,255)
 
 		lg.setCanvas(canvas)

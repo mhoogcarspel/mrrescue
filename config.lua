@@ -1,6 +1,6 @@
 default_config = {
 	scale = 3,
-	fullscreen = 3,
+	fullscreen = 4,
 	vsync = true,
 	sfx_volume = 1.0,
 	music_volume = 0.5,
@@ -89,7 +89,7 @@ function setMode()
 	if config.fullscreen == 0 then
 		love.window.setMode(WIDTH*config.scale, HEIGHT*config.scale, {fullscreen=false, vsync=config.vsync})
 		love.graphics.setScissor()
-	elseif config.fullscreen > 0 and config.fullscreen <= 3 then
+	elseif config.fullscreen > 0 and config.fullscreen <= 4 then
 		love.window.setMode(0,0, {fullscreen=true, vsync=config.vsync})
 		love.window.setMode(love.graphics.getWidth(), love.graphics.getHeight(), {fullscreen=true, vsync=config.vsync})
 	end

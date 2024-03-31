@@ -25,6 +25,8 @@ function options.draw()
 	if config.fullscreen == 0 then		lg.print("OFF", 167, 76)
 	elseif config.fullscreen == 1 then	lg.print("FILL", 167, 76)
 	elseif config.fullscreen == 2 then	lg.print("ZOOM", 167, 76)
+	elseif config.fullscreen == 3 then	lg.print("SCALE", 167, 76)
+	elseif config.fullscreen == 4 then	lg.print("ASPCT", 167, 76)
 	else								lg.print("SCALE", 167, 76)
 	end
 	lg.print("VSYNC:", 65, 89)		lg.print(config.vsync and "ON" or "OFF", 167, 89)
@@ -59,12 +61,12 @@ function options.keypressed(k, uni)
 		elseif options.selection == 2 then -- FULLSCREEN
 			if k == "left" then
 				if config.fullscreen > 0 then
-					config.fullscreen = cap(config.fullscreen - 1, 0, 3)
+					config.fullscreen = cap(config.fullscreen - 1, 0, 4)
 					setMode()
 				end
 			else
-				if config.fullscreen < 3 then
-					config.fullscreen = cap(config.fullscreen + 1, 0, 3)
+				if config.fullscreen < 4 then
+					config.fullscreen = cap(config.fullscreen + 1, 0, 4)
 					setMode()
 				end
 			end
