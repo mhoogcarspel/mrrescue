@@ -134,12 +134,12 @@ function options.action(k)
 		elseif options.selection == 2 then -- FULLSCREEN
 			if k == "left" then
 				if config.fullscreen > 0 then
-					config.fullscreen = cap(config.fullscreen - 1, 0, 3)
+					config.fullscreen = cap(config.fullscreen - 1, 0, 4)
 					setMode()
 				end
 			else
-				if config.fullscreen < 3 then
-					config.fullscreen = cap(config.fullscreen + 1, 0, 3)
+				if config.fullscreen < 4 then
+					config.fullscreen = cap(config.fullscreen + 1, 0, 4)
 					setMode()
 				end
 			end
